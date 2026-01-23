@@ -1,0 +1,23 @@
+# Orange Pi 5 + AWS Greengrass PPE Detection System
+# Python Dependencies
+
+# Core
+numpy>=1.24.0
+opencv-python-headless>=4.8.0
+
+# AWS SDK
+boto3>=1.28.0
+awsiotsdk>=1.17.0
+
+# Image Processing
+Pillow>=10.0.0
+
+# RKNN (Orange Pi 5 NPU)
+# Note: Install from local wheel for aarch64
+# pip install rknn_toolkit_lite2-*-cp311-cp311-linux_aarch64.whl
+
+# Optional: Testing
+pytest>=7.0.0
+
+# Optional: Stream Manager
+# stream_manager>=1.0.0
