@@ -140,19 +140,27 @@ pip3 install \
     awsiotsdk
 ```
 
-### RKNN Toolkit Lite 설치
+### RKNN Toolkit Lite2 설치
+
+> **중요**: NPU를 사용하려면 커널, RKNPU 드라이버, librknnrt, rknn-toolkit-lite2의 버전이 모두 호환되어야 합니다.
+> 자세한 호환성 매트릭스와 OS 선택 가이드는 [02. OS 설치 및 NPU 환경 설정](./02-orangepi5-os-installation.md#호환성-매트릭스)을 참조하세요.
 
 ```bash
-# RKNN Toolkit Lite2 다운로드
-cd ~
-git clone https://github.com/rockchip-linux/rknn-toolkit2.git
-cd rknn-toolkit2
+# 방법 1: pip으로 설치 (v2.3.0+, 권장)
+pip3 install rknn-toolkit-lite2
 
-# Python 휠 설치 (aarch64)
-pip3 install rknn_toolkit_lite2/packages/rknn_toolkit_lite2-*-cp311-cp311-linux_aarch64.whl
+# 방법 2: GitHub에서 직접 설치 (pip 실패 시)
+cd /tmp
+git clone --depth 1 https://github.com/airockchip/rknn-toolkit2.git
+pip3 install /tmp/rknn-toolkit2/rknn_toolkit_lite2/packages/rknn_toolkit_lite2-*-cp3*-cp3*-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+rm -rf /tmp/rknn-toolkit2
 
 # 설치 확인
 python3 -c "from rknnlite.api import RKNNLite; print('RKNN Lite installed successfully')"
+
+# NPU 환경 종합 확인
+cat /sys/kernel/debug/rknpu/version          # RKNPU 드라이버 v0.9.8 권장
+strings /usr/lib/librknnrt.so | grep version  # librknnrt v2.3.0+ 권장
 ```
 
 ### 프로젝트 디렉토리 구조
@@ -189,8 +197,8 @@ tree ~/ppe-detection
 # Rockchip 제공 사전 학습 모델 다운로드
 cd ~/ppe-detection/models
 
-# YOLOv5 RKNN 모델 (예시)
-wget https://github.com/rockchip-linux/rknn-toolkit2/raw/master/examples/onnx/yolov5/yolov5s-640-640.rknn
+# YOLOv5 RKNN 모델 (예시 - airockchip 최신 리포지토리 사용)
+wget https://github.com/airockchip/rknn-toolkit2/raw/master/examples/onnx/yolov5/yolov5s-640-640.rknn
 
 # 또는 PPE 전용 모델 (있는 경우)
 # wget https://example.com/ppe_yolov5.rknn
@@ -1649,7 +1657,9 @@ Greengrass 통합:
 
 ## 참고 자료
 
-- [RKNN Toolkit2 GitHub](https://github.com/rockchip-linux/rknn-toolkit2)
+- [RKNN Toolkit2 GitHub (airockchip, 최신)](https://github.com/airockchip/rknn-toolkit2)
+- [RKNN Toolkit2 릴리스](https://github.com/airockchip/rknn-toolkit2/releases)
+- [rknn-toolkit-lite2 (PyPI)](https://pypi.org/project/rknn-toolkit-lite2/)
 - [YOLOv5 RKNN 변환 가이드](https://github.com/airockchip/rknn_model_zoo)
 - [OpenCV RTSP 스트리밍](https://docs.opencv.org/4.x/d8/dfe/classcv_1_1VideoCapture.html)
 - [AWS IoT Greengrass ML Inference](https://docs.aws.amazon.com/greengrass/v2/developerguide/perform-machine-learning-inference.html)
