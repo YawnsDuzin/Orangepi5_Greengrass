@@ -13,8 +13,9 @@ awsiotsdk>=1.17.0
 Pillow>=10.0.0
 
 # RKNN (Orange Pi 5 NPU)
-# Note: Install from local wheel for aarch64
-# pip install rknn_toolkit_lite2-*-cp311-cp311-linux_aarch64.whl
+# Requires: Rockchip BSP kernel (5.10/6.1), RKNPU driver v0.9.6+, librknnrt v2.3.0+
+# See _docs/02-orangepi5-os-installation.md for full compatibility matrix
+rknn-toolkit-lite2>=2.3.0
 
 # Optional: Testing
 pytest>=7.0.0

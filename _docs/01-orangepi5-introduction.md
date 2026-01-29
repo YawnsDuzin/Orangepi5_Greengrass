@@ -121,16 +121,29 @@ Orange Pi 5는 중국의 Shenzhen Xunlong Software에서 개발한 싱글보드 
 ### 권장 OS (이 튜토리얼 기준)
 
 ```
-┌────────────────────────────────────────────────────────┐
-│  권장: Debian 12 (Bookworm) 또는 Ubuntu 22.04 LTS     │
-├────────────────────────────────────────────────────────┤
-│  이유:                                                 │
-│  • AWS Greengrass Core 공식 지원                      │
-│  • apt 패키지 관리자 사용                              │
-│  • 안정적인 장기 지원                                  │
-│  • Python 3.10+ 기본 포함                             │
-│  • RKNN SDK 호환성 우수                               │
-└────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────────────┐
+│  NPU 사용을 위한 권장 OS                                         │
+├───────────────────────────────────────────────────────────────────┤
+│                                                                   │
+│  1순위: Armbian Bookworm (Rockchip BSP 커널)                     │
+│  - RKNPU 드라이버 v0.9.8 기본 포함                                │
+│  - 별도 드라이버 설정 불필요                                       │
+│                                                                   │
+│  2순위: Orange Pi 공식 Ubuntu 22.04 / Debian 12                  │
+│  - BSP 커널 포함 (RKNPU 드라이버 수동 업그레이드 필요)            │
+│                                                                   │
+│  비권장: Joshua Riek Ubuntu Rockchip                             │
+│  - NPU 지원 미보장 (드라이버 업데이트 NOT_PLANNED)                │
+│  - Mainline 커널 이미지는 NPU 사용 불가                           │
+│                                                                   │
+│  공통 요구사항:                                                   │
+│  • Rockchip BSP 커널 (5.10.x 또는 6.1.x) 필수                   │
+│  • AWS Greengrass Core 공식 지원                                  │
+│  • Python 3.10+ 기본 포함                                        │
+│  • RKNN SDK 호환성 우수                                           │
+│                                                                   │
+│  자세한 호환성 정보: 02. OS 설치 문서 참조                        │
+└───────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -294,4 +307,4 @@ NPU(Neural Processing Unit)는 신경망 연산에 최적화된 전용 프로세
 - [Orange Pi 공식 사이트](http://www.orangepi.org/)
 - [Orange Pi 5 Wiki](http://www.orangepi.org/orangepiwiki/index.php/Orange_Pi_5)
 - [Rockchip RK3588S 데이터시트](https://www.rock-chips.com/a/en/products/RK35_Series/2022/0926/1660.html)
-- [RKNN Toolkit GitHub](https://github.com/rockchip-linux/rknn-toolkit2)
+- [RKNN Toolkit2 GitHub (airockchip, 최신)](https://github.com/airockchip/rknn-toolkit2)
